@@ -2,10 +2,12 @@
 // Projects
 // *****************************************************************************
 
+
+
 lazy val `akka-http-json` =
     project
       .in(file("."))
-      .enablePlugins(GitVersioning)
+      //.enablePlugins(GitVersioning)
       .aggregate(
           `akka-http-argonaut`,
           `akka-http-circe`,
@@ -161,6 +163,7 @@ lazy val settings =
 lazy val commonSettings =
     Seq(
         // scalaVersion from .travis.yml via sbt-travisci
+        version := "1.18.2-SNAPSHOT",
         scalaVersion := "2.12.4",
         organization := "de.heikoseeberger",
         organizationName := "Heiko Seeberger",
