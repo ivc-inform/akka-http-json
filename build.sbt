@@ -44,10 +44,10 @@ lazy val `akka-http-circe` =
           libraryDependencies ++= Seq(
               library.akkaHttp,
               library.circeCore,
+              library.circeGeneric,
               library.circeJawn,
               library.circeJava8,
               library.circeParser,
-              library.circeGeneric % Test,
               library.scalaTest % Test
           )
       )
