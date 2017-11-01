@@ -67,8 +67,7 @@ trait ErrorAccumulatingCirceSupport extends BaseCirceSupport with ErrorAccumulat
   */
 trait BaseCirceSupport {
 
-  def unmarshallerContentTypes: Seq[ContentTypeRange] =
-    List(`application/json`)
+  def unmarshallerContentTypes: Seq[ContentTypeRange] = List(`application/json`)
 
   /**
     * `Json` => HTTP entity
@@ -78,9 +77,9 @@ trait BaseCirceSupport {
   implicit final def jsonMarshaller(
       implicit printer: Printer = Printer.noSpaces
   ): ToEntityMarshaller[Json] =
-    Marshaller.withFixedContentType(`application/json`) { json =>
-      HttpEntity(`application/json`, printer.pretty(json))
-    }
+    Marshaller.withFixedContentType(`application/json`)(
+      json => HttpEntity(`application/json`, printer.pretty(json))
+    )
 
   /**
     * `A` => HTTP entity
@@ -118,10 +117,12 @@ trait BaseCirceSupport {
 /**
   * Mix-in this trait to fail on the first error during unmarshalling.
   */
-trait FailFastUnmarshaller { this: BaseCirceSupport =>
+trait FailFastUnmarshaller {
+  this: BaseCirceSupport =>
 
   override implicit final def unmarshaller[A: Decoder]: FromEntityUnmarshaller[A] = {
     def decode(json: Json) = implicitly[Decoder[A]].decodeJson(json).fold(throw _, identity)
+
     jsonUnmarshaller.map(decode)
   }
 }
@@ -129,13 +130,15 @@ trait FailFastUnmarshaller { this: BaseCirceSupport =>
 /**
   * Mix-in this trait to accumulate all errors during unmarshalling.
   */
-trait ErrorAccumulatingUnmarshaller { this: BaseCirceSupport =>
+trait ErrorAccumulatingUnmarshaller {
+  this: BaseCirceSupport =>
 
   override implicit final def unmarshaller[A: Decoder]: FromEntityUnmarshaller[A] = {
     def decode(json: Json) =
       implicitly[Decoder[A]]
         .accumulating(json.hcursor)
         .fold(failures => throw ErrorAccumulatingCirceSupport.DecodingFailures(failures), identity)
+
     jsonUnmarshaller.map(decode)
   }
 }
