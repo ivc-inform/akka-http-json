@@ -111,6 +111,7 @@ lazy val `akka-http-avro4s` =
           libraryDependencies ++= Seq(
               library.akkaHttp,
               library.avro4sJson,
+              library.avro4sCore,
               library.scalaTest % Test
           )
       )
@@ -147,6 +148,7 @@ lazy val library =
         val playJson = "com.typesafe.play" %% "play-json" % Version.play
         val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTest
         val upickle = "com.lihaoyi" %% "upickle" % Version.upickle
+        val avro4sCore = "com.sksamuel.avro4s" %% "avro4s-core" % Version.avro4s
         val avro4sJson = "com.sksamuel.avro4s" %% "avro4s-json" % Version.avro4s
     }
 
