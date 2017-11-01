@@ -157,7 +157,7 @@ lazy val settings =
 lazy val commonSettings =
   Seq(
     // scalaVersion from .travis.yml via sbt-travisci
-    // scalaVersion := "2.12.3",
+    scalaVersion := "2.12.4",
     organization := "de.heikoseeberger",
     organizationName := "Heiko Seeberger",
     startYear := Some(2015),
@@ -195,5 +195,5 @@ lazy val publishSettings =
                             "mail@heikoseeberger.de",
                             url("https://github.com/hseeberger")),
     pomIncludeRepository := (_ => false),
-    bintrayPackage := "akka-http-json"
+    //bintrayPackage := "akka-http-json"
   )
