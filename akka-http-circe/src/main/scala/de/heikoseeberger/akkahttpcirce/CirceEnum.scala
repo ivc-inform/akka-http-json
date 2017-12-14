@@ -15,13 +15,9 @@
  */
 
 package de.heikoseeberger.akkahttpcirce
-
-import cats._
-//import cats.data._
-import cats.implicits._
-import io.circe.{ Decoder, Encoder }
+import io.circe.{Decoder, Encoder}
 import shapeless._
-import shapeless.labelled.{ field, FieldType }
+import shapeless.labelled.{FieldType, field}
 
 trait IsEnum[C <: Coproduct] {
   def to(c: C): String
