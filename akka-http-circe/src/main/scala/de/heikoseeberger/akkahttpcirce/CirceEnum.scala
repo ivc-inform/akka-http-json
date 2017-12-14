@@ -16,9 +16,13 @@
 
 package de.heikoseeberger.akkahttpcirce
 
-import io.circe.Encoder
+import cats._
+//import cats.data._
+import cats.implicits._
+import io.circe.{Decoder, Encoder}
 import shapeless._
-import shapeless.labelled.{ field, FieldType }
+import shapeless.labelled.{FieldType, field}
+
 
 trait IsEnum[C <: Coproduct] {
   def to(c: C): String
@@ -39,8 +43,8 @@ object IsEnum {
       tie: IsEnum[T]
   ): IsEnum[FieldType[K, H] :+: T] = new IsEnum[FieldType[K, H] :+: T] {
     def to(c: FieldType[K, H] :+: T): String = c match {
-      case Inl(h) => witK.value.name
-      case Inr(t) => tie.to(t)
+      case Inl(h) ⇒ witK.value.name
+      case Inr(t) ⇒ tie.to(t)
     }
 
     def from(s: String): Option[FieldType[K, H] :+: T] =
@@ -54,6 +58,12 @@ object CirceEnum {
   implicit def encodeEnum[A, C <: Coproduct](implicit
                                              gen: LabelledGeneric.Aux[A, C],
                                              rie: IsEnum[C]): Encoder[A] =
-    Encoder[String].contramap[A](a => rie.to(gen.to(a)))
+    Encoder[String].contramap[A](a ⇒ rie.to(gen.to(a)))
+
+  implicit def decodeEnum[A, C <: Coproduct](implicit
+                                             gen: LabelledGeneric.Aux[A, C],
+                                             rie: IsEnum[C]): Decoder[A] =
+
+    Decoder[String].emap(s ⇒ Xor.fromOption(rie.from(s).map(gen.from), "enum"))
 
 }

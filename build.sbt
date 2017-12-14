@@ -123,34 +123,35 @@ lazy val `akka-http-avro4s` =
 lazy val library =
     new {
         object Version {
-            val akkaHttp = "10.0.11"
-            val argonaut = "6.2"
-            val circe = "0.8.0"
-            val jacksonScala = "2.9.1"
+            val akkaHttpVersion = "10.0.11"
+            val argonautVersion = "6.2"
+            val circeVersion = "0.8.0"
+            val jacksonScalaVersion = "2.9.1"
             //val json4s = "3.5.3"
-            val json4s = "3.6.0-M1"
-            val play = "2.6.5"
-            val scalaTest = "3.0.4"
-            val upickle = "0.4.4"
-            val avro4s = "1.8.2-SNAPSHOT"
+            val json4sVersion = "3.6.0-M1"
+            val playVersion = "2.6.5"
+            val scalaTestVersion = "3.0.4"
+            val upickleVersion = "0.4.4"
+            val avro4sVersion = "1.8.2-SNAPSHOT"
+            val catsVersion = "1.8.2-SNAPSHOT"
         }
-        val akkaHttp = "com.typesafe.akka" %% "akka-http" % Version.akkaHttp
-        val akkaHttpJacksonJava = "com.typesafe.akka" %% "akka-http-jackson" % Version.akkaHttp
-        val argonaut = "io.argonaut" %% "argonaut" % Version.argonaut
-        val circeCore = "io.circe" %% "circe-core" % Version.circe
-        val circeJawn = "io.circe" %% "circe-jawn" % Version.circe
-        val circeGeneric = "io.circe" %% "circe-generic" % Version.circe
-        val circeJava8 = "io.circe" %% "circe-java8" % Version.circe
-        val circeParser = "io.circe" %% "circe-parser" % Version.circe
-        val jacksonScala = "com.fasterxml.jackson.module" %% "jackson-module-scala" % Version.jacksonScala
-        val json4sCore = "org.json4s" %% "json4s-core" % Version.json4s
-        val json4sJackson = "org.json4s" %% "json4s-jackson" % Version.json4s
-        val json4sNative = "org.json4s" %% "json4s-native" % Version.json4s
-        val playJson = "com.typesafe.play" %% "play-json" % Version.play
-        val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTest
-        val upickle = "com.lihaoyi" %% "upickle" % Version.upickle
-        val avro4sCore = "com.sksamuel.avro4s" %% "avro4s-core" % Version.avro4s
-        val avro4sJson = "com.sksamuel.avro4s" %% "avro4s-json" % Version.avro4s
+        val akkaHttp = "com.typesafe.akka" %% "akka-http" % Version.akkaHttpVersion
+        val akkaHttpJacksonJava = "com.typesafe.akka" %% "akka-http-jackson" % Version.akkaHttpVersion
+        val argonaut = "io.argonaut" %% "argonaut" % Version.argonautVersion
+        val circeCore = "io.circe" %% "circe-core" % Version.circeVersion
+        val circeJawn = "io.circe" %% "circe-jawn" % Version.circeVersion
+        val circeGeneric = "io.circe" %% "circe-generic" % Version.circeVersion
+        val circeJava8 = "io.circe" %% "circe-java8" % Version.circeVersion
+        val circeParser = "io.circe" %% "circe-parser" % Version.circeVersion
+        val jacksonScala = "com.fasterxml.jackson.module" %% "jackson-module-scala" % Version.jacksonScalaVersion
+        val json4sCore = "org.json4s" %% "json4s-core" % Version.json4sVersion
+        val json4sJackson = "org.json4s" %% "json4s-jackson" % Version.json4sVersion
+        val json4sNative = "org.json4s" %% "json4s-native" % Version.json4sVersion
+        val playJson = "com.typesafe.play" %% "play-json" % Version.playVersion
+        val scalaTest = "org.scalatest" %% "scalatest" % Version.scalaTestVersion
+        val upickle = "com.lihaoyi" %% "upickle" % Version.upickleVersion
+        val avro4sCore = "com.sksamuel.avro4s" %% "avro4s-core" % Version.avro4sVersion
+        val avro4sJson = "com.sksamuel.avro4s" %% "avro4s-json" % Version.avro4sVersion
     }
 
 // *****************************************************************************
