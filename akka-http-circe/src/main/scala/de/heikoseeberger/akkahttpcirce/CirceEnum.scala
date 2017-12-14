@@ -19,10 +19,9 @@ package de.heikoseeberger.akkahttpcirce
 import cats._
 //import cats.data._
 import cats.implicits._
-import io.circe.{Decoder, Encoder}
+import io.circe.{ Decoder, Encoder }
 import shapeless._
-import shapeless.labelled.{FieldType, field}
-
+import shapeless.labelled.{ field, FieldType }
 
 trait IsEnum[C <: Coproduct] {
   def to(c: C): String
@@ -63,7 +62,14 @@ object CirceEnum {
   implicit def decodeEnum[A, C <: Coproduct](implicit
                                              gen: LabelledGeneric.Aux[A, C],
                                              rie: IsEnum[C]): Decoder[A] =
+    Decoder[String].emap(
+      s ⇒
+        rie.from(s).map(gen.from) match {
+          case Some(x) ⇒ Right(x)
+          case None    ⇒ Left("enum")
+      }
+    )
 
-    Decoder[String].emap(s ⇒ Xor.fromOption(rie.from(s).map(gen.from), "enum"))
+  //Decoder[String].emap(s ⇒ Xor.fromOption(rie.from(s).map(gen.from), "enum"))
 
 }
