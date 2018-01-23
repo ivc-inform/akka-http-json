@@ -127,8 +127,7 @@ lazy val library =
             val argonautVersion = "6.2"
             val circeVersion = "0.8.0"
             val jacksonScalaVersion = "2.9.1"
-            //val json4s = "3.5.3"
-            val json4sVersion = "3.6.0-M1"
+            val json4sVersion = "3.6.0-M2"
             val playVersion = "2.6.5"
             val scalaTestVersion = "3.0.4"
             val upickleVersion = "0.4.4"
@@ -193,7 +192,7 @@ lazy val scalafmtSettings =
     Seq(
         scalafmtOnCompile := true,
         scalafmtOnCompile.in(Sbt) := false,
-        scalafmtVersion := "1.2.0"
+        scalafmtVersion := "1.4.0"
     )
 
 lazy val publishSettings =
