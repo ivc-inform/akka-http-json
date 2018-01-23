@@ -204,7 +204,6 @@ lazy val publishSettings =
             "Heiko Seeberger",
             "mail@heikoseeberger.de",
             url("https://github.com/hseeberger")),
-        //pomIncludeRepository := (_ => false),
         publishTo := {
             val corporateRepo = "http://toucan.simplesys.lan/"
             if (isSnapshot.value)
@@ -213,5 +212,4 @@ lazy val publishSettings =
                 Some("releases" at corporateRepo + "artifactory/libs-release-local")
         },
         credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
-        //bintrayPackage := "akka-http-json"
     )
